@@ -44,7 +44,7 @@ class MoviesView(Resource):
         new_movie = Movie(**req_json)
         with db.session.begin():
             db.session.add(new_movie)
-        return f"Новый объект с id {new_movie.id} создан!", 201
+        return f"Новый объект создан!", 201
 
 
 @movie_ns.route("/<int:movie_id>")
@@ -77,7 +77,7 @@ class MovieView(Resource):
             movie.director_id = req_json['director_id']
         db.session.add(movie)
         db.session.commit()
-        return f"Объект {movie_id} обновлён!"
+        return f"Объект {movie_id} обновлён!", 204
 
 
     def put(self, movie_id):        
